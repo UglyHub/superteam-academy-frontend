@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -47,13 +46,6 @@ const config: Config = {
           900: '#00502c',
         },
         
-        // Secondary (Dark Green)
-        secondary: {
-          500: '#2f6b3f',
-          600: '#295f38',
-          700: '#235331',
-        },
-        
         // Dark backgrounds
         dark: {
           primary: '#000000',
@@ -62,27 +54,6 @@ const config: Config = {
           elevated: '#1f2723',
           surface: '#252d28',
           'surface-hover': '#2f3a33',
-        },
-        
-        // XP colors
-        xp: {
-          DEFAULT: '#008c4c',
-          glow: '#008c4c',
-        },
-        
-        // Streak colors
-        streak: {
-          yellow: '#ffd23f',
-          orange: '#ff8c42',
-        },
-        
-        // Level colors
-        level: {
-          bronze: '#cd7f32',
-          silver: '#c0c0c0',
-          gold: '#ffd23f',
-          platinum: '#e5e4e2',
-          emerald: '#008c4c',
         },
       },
       
@@ -96,7 +67,6 @@ const config: Config = {
         'glow-yellow': '0 0 20px rgba(255, 210, 63, 0.5)',
         'glow-green': '0 0 20px rgba(0, 140, 76, 0.5)',
         'glow-xp': '0 0 30px rgba(0, 140, 76, 0.7)',
-        'glow-brand': '0 0 25px rgba(255, 210, 63, 0.6)',
       },
     },
   },
