@@ -8,6 +8,7 @@ export interface Lesson {
     prompt: string;
     starterCode: string;
     solution: string;
+    language: 'typescript' | 'rust' | 'json';
     testCases: { input: string; expectedOutput: string }[];
   };
 }
@@ -51,14 +52,14 @@ export const mockCourses: Course[] = [
             id: 'l1',
             title: 'What is Solana?',
             type: 'content',
-            content: '# What is Solana?\n\nSolana is a high-performance blockchain supporting builders around the world.',
+            content: '<h2>What is Solana?</h2><p>Solana is a high-performance blockchain supporting builders around the world creating crypto apps that scale today.</p><p>With Solana, you can build applications that take advantage of:</p><ul><li>Fast transaction speeds (400ms block times)</li><li>Low transaction costs (less than $0.01)</li><li>High throughput (65,000+ TPS)</li><li>Energy efficiency</li></ul>',
             xpReward: 10,
           },
           {
             id: 'l2',
             title: 'Setting Up Your Environment',
             type: 'content',
-            content: '# Setting Up Your Environment\n\nLet\'s get your development environment ready.',
+            content: '<h2>Setting Up Your Development Environment</h2><p>Let\'s get your Solana development environment ready:</p><ol><li>Install Node.js (v18+)</li><li>Install Solana CLI</li><li>Create a test wallet</li><li>Get devnet SOL from faucet</li></ol><p>By the end of this lesson, you\'ll be ready to write your first Solana program!</p>',
             xpReward: 10,
           },
           {
@@ -67,9 +68,10 @@ export const mockCourses: Course[] = [
             type: 'challenge',
             xpReward: 50,
             challenge: {
-              prompt: 'Create a function that returns a Solana PublicKey from a string address.',
-              starterCode: 'import { PublicKey } from "@solana/web3.js";\n\nfunction getPublicKey(address: string): PublicKey {\n  // Your code here\n}',
+              prompt: 'Create a function that returns a Solana PublicKey from a string address.\n\nThe PublicKey class is already imported for you. Your task is to:\n1. Take a string address as input\n2. Create and return a new PublicKey instance\n\nExample:\nInput: "11111111111111111111111111111111"\nOutput: PublicKey instance',
+              starterCode: 'import { PublicKey } from "@solana/web3.js";\n\nfunction getPublicKey(address: string): PublicKey {\n  // Your code here\n  \n}',
               solution: 'import { PublicKey } from "@solana/web3.js";\n\nfunction getPublicKey(address: string): PublicKey {\n  return new PublicKey(address);\n}',
+              language: 'typescript',
               testCases: [
                 { input: '11111111111111111111111111111111', expectedOutput: 'PublicKey' },
               ],
@@ -98,7 +100,7 @@ export const mockCourses: Course[] = [
             id: 'l1',
             title: 'Introduction to Anchor',
             type: 'content',
-            content: '# Introduction to Anchor\n\nAnchor is a framework for building Solana programs.',
+            content: '<h2>Introduction to Anchor</h2><p>Anchor is a framework for Solana that makes it easier to build secure, reliable programs.</p>',
             xpReward: 25,
           },
           {
@@ -107,9 +109,10 @@ export const mockCourses: Course[] = [
             type: 'challenge',
             xpReward: 75,
             challenge: {
-              prompt: 'Write an Anchor program instruction that stores a number in an account.',
-              starterCode: 'use anchor_lang::prelude::*;\n\n// Your code here',
-              solution: '// Solution code',
+              prompt: 'Write an Anchor program instruction that stores a number in an account.\n\nYour task:\n1. Define a context struct\n2. Create an instruction that takes a number\n3. Store it in the account data',
+              starterCode: 'use anchor_lang::prelude::*;\n\n// Define your program ID\ndeclare_id!("Fg6PaFpoGXkYsidMpWxTWL7cyuCyofV1uC7w4N6wCR9T");\n\n// Your code here\n',
+              solution: 'use anchor_lang::prelude::*;\n\ndeclare_id!("Fg6PaFpoGXkYsidMpWxTWL7cyuCyofV1uC7w4N6wCR9T");\n\n#[program]\npub mod my_program {\n    use super::*;\n    pub fn store_number(ctx: Context<StoreNumber>, number: u64) -> Result<()> {\n        ctx.accounts.data_account.number = number;\n        Ok(())\n    }\n}\n\n#[derive(Accounts)]\npub struct StoreNumber<\'info> {\n    #[account(mut)]\n    pub data_account: Account<\'info, DataAccount>,\n}\n\n#[account]\npub struct DataAccount {\n    pub number: u64,\n}',
+              language: 'rust',
               testCases: [
                 { input: 'store(42)', expectedOutput: '42' },
               ],
@@ -138,7 +141,7 @@ export const mockCourses: Course[] = [
             id: 'l1',
             title: 'What are NFTs on Solana?',
             type: 'content',
-            content: '# NFTs on Solana\n\nLearn how NFTs work on Solana.',
+            content: '<h2>NFTs on Solana</h2><p>Learn how NFTs work on Solana and why they\'re different from Ethereum.</p>',
             xpReward: 20,
           },
         ],
@@ -164,7 +167,7 @@ export const mockCourses: Course[] = [
             id: 'l1',
             title: 'Introduction to DeFi',
             type: 'content',
-            content: '# DeFi on Solana\n\nLearn how to build DeFi protocols.',
+            content: '<h2>DeFi on Solana</h2><p>Learn how to build DeFi protocols on Solana.</p>',
             xpReward: 30,
           },
         ],
