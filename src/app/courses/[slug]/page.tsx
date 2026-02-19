@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { getCourseBySlug } from '@/lib/data/mockCourses';
 import { CourseHero } from '@/components/courses/CourseHero';
@@ -11,7 +11,6 @@ import Link from 'next/link';
 
 export default function CourseDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const course = getCourseBySlug(params.slug as string);
 
   const [enrolled, setEnrolled] = useState(false);
@@ -124,7 +123,7 @@ export default function CourseDetailPage() {
               </div>
 
               <div className="border-t border-white/10 pt-6">
-                <h4 className="text-white font-semibold text-sm mb-3">What you'll learn</h4>
+                <h4 className="text-white font-semibold text-sm mb-3">What you&apos;ll learn</h4>
                 <ul className="space-y-2 text-sm text-gray-400">
                   <li className="flex items-start gap-2">
                     <span className="text-accent-500 mt-0.5">✓</span>
